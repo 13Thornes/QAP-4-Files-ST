@@ -241,6 +241,19 @@ while True:
     
     DownPayDsp = FV.FDollar2(DownPay)
 
+    InvoiceDate = datetime.datetime.now()
+
+    NewMonth = int(InvoiceDate.month) + 1
+
+    NewYear = int(InvoiceDate.year) + 1
+
+    if InvoiceDate.month != 12: #December is the only month that will change the year
+        FirstPayDate = str(InvoiceDate.year) + "-" + str(NewMonth) + "-01"
+    else:
+        FirstPayDate = str(NewYear) + "-01-01"
+
+    
+
     print()
     print()
     print(f"                       One Stop Insurance Company")
@@ -250,6 +263,7 @@ while True:
     print()
     print(f"----------------------------------------------------------------------")
     print()
+    print(f"   {NEXT_POL_NUM}")
     print(f"   {FullName:<25s}          Cars Insured:              {CarNum:>2d}")
     print(f"   {StAdd:<25s}          Extra Liability Coverage:   {ExtraLiab:<1s}")
     print(f"   {City:<15s}, {Prov:<2s}, {PostCodeDSP:<7s}       Glass Coverage:             {GlassCov:<1s}")
@@ -273,11 +287,13 @@ while True:
     print(f"                           Monthly Payment:              {MonthPayDSP:>10s}")
     print()
     print(f"----------------------------------------------------------------------")
+    print(f"   Invoice Date: {InvoiceDate:<10s}   First Payment Due: {FirstPayDate:<10s}")
     print()
     print(f"                              Past Claims")
     print()
     print(f"                  Claim #   Claim Date      Amount")
     print(f"                  --------------------------------")
+    
     ClaimNum = 1
     for claim in ClaimDatesLst:
 
